@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+build/
+dist/
+release/
+待处理的文件/
+局里文件夹分类方式.xlsx
+*.exe
+*.log
+.DS_Store
+Thumbs.db

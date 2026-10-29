@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">SoulRui 文件夹整理工具图标</title>
+  <desc id="desc">Reusable SoulRui app icon. Keep the soulrui-brand layer unchanged and replace the app-artwork layer for each application.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E3A8A"/>
+    </linearGradient>
+    <linearGradient id="folder" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+    <linearGradient id="brand-mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+  </defs>
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="url(#background)"/>
+  <circle cx="442" cy="430" r="180" fill="#FFFFFF" opacity="0.04"/>
+  <g id="app-artwork">
+    <ellipse cx="256" cy="432" rx="158" ry="24" fill="#020617" opacity="0.42" filter="url(#shadow)"/>
+    <rect x="108" y="214" width="296" height="184" rx="22" fill="#1D4ED8"/>
+    <rect x="108" y="198" width="142" height="84" rx="20" fill="#60A5FA"/>
+    <rect x="96" y="258" width="320" height="172" rx="26" fill="url(#folder)"/>
+    <g fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" opacity="0.94">
+      <path d="M142 302 H300"/>
+      <path d="M142 344 H270"/>
+      <path d="M142 386 H236"/>
+    </g>
+    <circle cx="372" cy="392" r="42" fill="#34D399" stroke="#FFFFFF" stroke-width="6"/>
+    <path d="M352 392 L366 406 L394 374" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g id="soulrui-brand">
+    <path d="M120 8 H392 Q504 8 504 120 V136 H8 V120 Q8 8 120 8 Z" fill="#F8FAFC"/>
+    <rect x="8" y="134" width="496" height="4" fill="#22D3EE"/>
+    <clipPath id="avatar-clip">
+      <rect x="42" y="44" width="56" height="56" rx="13"/>
+    </clipPath>
+    <image href="soulrui-avatar.png" x="42" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatar-clip)"/>
+    <rect x="42" y="44" width="56" height="56" rx="13" fill="none" stroke="#6366F1" stroke-width="2"/>
+    <text x="122" y="76" dominant-baseline="middle" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="80" font-weight="700" letter-spacing="-3">SoulRui</text>
+  </g>
+  <rect x="9" y="9" width="494" height="494" rx="111" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2"/>
+</svg>
