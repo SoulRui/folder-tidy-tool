@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/icon.png" alt="SoulRui 文件夹整理工具图标" width="128">
+  <img src="assets/icon.png" alt="MC File 文件夹整理工具图标" width="128">
   <h1>文件夹整理工具</h1>
   <p><strong>Folder Tidy Tool</strong></p>
   <p>按 Excel 分类、生成目录清单、批量重命名和同名文件归组的 Windows 桌面工具。</p>
@@ -41,7 +41,7 @@
 ### 下载与运行
 
 1. 打开 **[Releases 页面](https://github.com/SoulRui/folder-tidy-tool/releases/latest)**。
-2. 下载 **`folder-tidy-tool-v1.0.0-windows-x64.exe`**。
+2. 下载 **`folder-tidy-tool-v1.0.1-windows-x64.exe`**。
 3. 双击运行，无需安装 Python、Excel 或其他运行环境。
 4. 发布程序为 **Windows 64 位免安装版本**，已包含 openpyxl 和拖拽组件。
 5. 程序未购买代码签名证书，Windows SmartScreen 可能显示提示。请只从本仓库 Releases 下载，并核对发布页提供的 SHA-256；也可以检查源码后自行运行。
@@ -49,7 +49,7 @@
 校验命令：
 
 ```powershell
-certutil -hashfile "folder-tidy-tool-v1.0.0-windows-x64.exe" SHA256
+certutil -hashfile "folder-tidy-tool-v1.0.1-windows-x64.exe" SHA256
 ```
 
 ### 一、按 Excel 分类整理
@@ -126,16 +126,16 @@ Excel 规则：
 - 路径配置仅保存在本机 `%APPDATA%/文件夹整理工具/config.json`。
 - 发布附带的两个 Excel 均为虚构演示数据，可用于安全试跑。
 
-### SoulRui 统一图标模板
+### MC 统一图标模板
 
-本项目的图标采用固定的品牌顶部和可替换的应用图案：
+本项目遵循《MC Software Visual Identity System V1.0》，采用 26% 白色品牌区和 74% 功能区：
 
-- `assets/soulrui-avatar.png`：GitHub 头像。
-- `assets/icon.svg`：可编辑模板。保留最上层的 `soulrui-brand` 组，替换 `app-artwork` 组即可用于其他应用。
-- `assets/icon.png`：512 × 512 PNG。
+- `assets/creator-avatar.png`：GitHub 作者头像。
+- `assets/icon.svg`：1024 × 1024 可编辑模板。保留 `mc-brand-header` 组，替换 `app-artwork` 组即可用于其他应用。
+- `assets/icon.png`：1024 × 1024 PNG。
 - `assets/icon.ico`：包含 16、24、32、48、64、128、256 像素，并为小尺寸进行锐化。
 
-头像与外框使用相同比例的 R 角。以后制作新应用时，保持“头像 + SoulRui 字标 + 青色分隔线”不变，只更换底部图案。
+顶部固定为“作者头像 + MC 大写品牌 + 应用短名称”，搭配 MC Navy、MC Blue、柔和阴影和统一圆角。文件工具使用蓝色功能主体；其他应用只替换功能主体与允许变化的功能色。
 
 ### 从源码运行
 
@@ -167,19 +167,19 @@ pyinstaller --clean "文件夹整理工具.spec"
 
 ```powershell
 # 分类整理：文件夹和文件，复制到新目录
-.\folder-tidy-tool-v1.0.0-windows-x64.exe classify "D:\Demo\classification.xlsx" "D:\Demo\Input" both copy "D:\Demo\Output"
+.\folder-tidy-tool-v1.0.1-windows-x64.exe classify "D:\Demo\classification.xlsx" "D:\Demo\Input" both copy "D:\Demo\Output"
 
 # 按 Excel 重命名子文件夹（原位移动）
-.\folder-tidy-tool-v1.0.0-windows-x64.exe rename "D:\Demo\rename.xlsx" "D:\Demo\Input" dirs move
+.\folder-tidy-tool-v1.0.1-windows-x64.exe rename "D:\Demo\rename.xlsx" "D:\Demo\Input" dirs move
 
 # 递归生成目录清单
-.\folder-tidy-tool-v1.0.0-windows-x64.exe scan "D:\Demo\Input" "D:\Demo\listing.xlsx"
+.\folder-tidy-tool-v1.0.1-windows-x64.exe scan "D:\Demo\Input" "D:\Demo\listing.xlsx"
 
 # 同名不同扩展名文件归组
-.\folder-tidy-tool-v1.0.0-windows-x64.exe group "D:\Demo\Input" full
+.\folder-tidy-tool-v1.0.1-windows-x64.exe group "D:\Demo\Input" full
 
 # 按文件名前 5 位归组，只处理 jpg 和 shp
-.\folder-tidy-tool-v1.0.0-windows-x64.exe group "D:\Demo\Input" prefix 5 jpg,shp
+.\folder-tidy-tool-v1.0.1-windows-x64.exe group "D:\Demo\Input" prefix 5 jpg,shp
 ```
 
 窗口版 EXE 的终端日志可能不可见；需要完整控制台输出时，可使用 `python folder_tidy_tool.py ...` 运行相同命令。移动类命令请先使用测试副本。
@@ -188,7 +188,7 @@ pyinstaller --clean "文件夹整理工具.spec"
 
 ```text
 folder-tidy-tool/
-├── assets/                       # SoulRui 品牌头像、SVG 模板、PNG 和 ICO
+├── assets/                       # MC 品牌头像、SVG 模板、PNG 和 ICO
 ├── docs/images/                  # 不含历史路径的界面截图
 ├── examples/                     # 虚构分类与重命名 Excel 示例
 ├── folder_tidy_tool.py           # GUI、Excel 处理与 CLI
@@ -227,13 +227,13 @@ The interface is currently in Simplified Chinese, with full English documentatio
 ### Download and run
 
 1. Open the **[Releases page](https://github.com/SoulRui/folder-tidy-tool/releases/latest)**.
-2. Download **`folder-tidy-tool-v1.0.0-windows-x64.exe`**.
+2. Download **`folder-tidy-tool-v1.0.1-windows-x64.exe`**.
 3. Double-click it. Python, Microsoft Excel, and additional runtimes are not required.
 4. The portable **64-bit Windows** build includes openpyxl and drag-and-drop resources.
 5. The executable is not digitally signed with a purchased code-signing certificate, so SmartScreen may warn you. Download only from this repository and compare the SHA-256 in the release notes, or inspect and run the source yourself.
 
 ```powershell
-certutil -hashfile "folder-tidy-tool-v1.0.0-windows-x64.exe" SHA256
+certutil -hashfile "folder-tidy-tool-v1.0.1-windows-x64.exe" SHA256
 ```
 
 ### Using the four tools
@@ -284,16 +284,16 @@ Group top-level files by full basename (`name.shp`, `name.shx`, and `name.dbf` g
 - Recent paths are stored only in `%APPDATA%/文件夹整理工具/config.json`.
 - Both included workbooks contain fictional demonstration data.
 
-### Reusable SoulRui icon template
+### Reusable MC icon template
 
-The icon has a fixed brand header and replaceable application artwork:
+This project follows MC Software Visual Identity System V1.0, with a 26% white brand header and a 74% functional area:
 
-- `assets/soulrui-avatar.png`: the GitHub avatar.
-- `assets/icon.svg`: editable source. Keep the top-level `soulrui-brand` group unchanged and replace `app-artwork` for another app.
-- `assets/icon.png`: 512 × 512 PNG.
+- `assets/creator-avatar.png`: the creator's GitHub avatar.
+- `assets/icon.svg`: editable 1024 × 1024 source. Keep `mc-brand-header` unchanged and replace `app-artwork` for another app.
+- `assets/icon.png`: 1024 × 1024 PNG.
 - `assets/icon.ico`: 16, 24, 32, 48, 64, 128, and 256 px variants with small-size sharpening.
 
-The avatar and outer tile use proportional corner radii. Keep the avatar, SoulRui wordmark, and cyan divider unchanged; replace only the lower artwork for future applications.
+The fixed header contains the creator avatar, uppercase MC brand, and short application name. MC Navy, MC Blue, soft shadows, and unified rounded geometry form the shared visual language. This file tool uses a blue functional subject; other apps change only the subject and permitted accent color.
 
 ### Run from source
 
@@ -323,19 +323,19 @@ The examples below use the release asset name. Replace it with your actual execu
 
 ```powershell
 # Classify folders and files into a separate output directory
-.\folder-tidy-tool-v1.0.0-windows-x64.exe classify "D:\Demo\classification.xlsx" "D:\Demo\Input" both copy "D:\Demo\Output"
+.\folder-tidy-tool-v1.0.1-windows-x64.exe classify "D:\Demo\classification.xlsx" "D:\Demo\Input" both copy "D:\Demo\Output"
 
 # Rename folders in place
-.\folder-tidy-tool-v1.0.0-windows-x64.exe rename "D:\Demo\rename.xlsx" "D:\Demo\Input" dirs move
+.\folder-tidy-tool-v1.0.1-windows-x64.exe rename "D:\Demo\rename.xlsx" "D:\Demo\Input" dirs move
 
 # Export a recursive directory listing
-.\folder-tidy-tool-v1.0.0-windows-x64.exe scan "D:\Demo\Input" "D:\Demo\listing.xlsx"
+.\folder-tidy-tool-v1.0.1-windows-x64.exe scan "D:\Demo\Input" "D:\Demo\listing.xlsx"
 
 # Group by complete basename
-.\folder-tidy-tool-v1.0.0-windows-x64.exe group "D:\Demo\Input" full
+.\folder-tidy-tool-v1.0.1-windows-x64.exe group "D:\Demo\Input" full
 
 # Group by a five-character prefix and filter extensions
-.\folder-tidy-tool-v1.0.0-windows-x64.exe group "D:\Demo\Input" prefix 5 jpg,shp
+.\folder-tidy-tool-v1.0.1-windows-x64.exe group "D:\Demo\Input" prefix 5 jpg,shp
 ```
 
 Console output may not be visible in the windowed EXE. Use `python folder_tidy_tool.py ...` when you need full terminal logs. Test move operations on copies first.
@@ -344,7 +344,7 @@ Console output may not be visible in the windowed EXE. Use `python folder_tidy_t
 
 ```text
 folder-tidy-tool/
-├── assets/                       # SoulRui avatar, SVG template, PNG, and ICO
+├── assets/                       # MC avatar, SVG template, PNG, and ICO
 ├── docs/images/                  # Screenshot with no remembered private paths
 ├── examples/                     # Fictional classification and rename workbooks
 ├── folder_tidy_tool.py           # GUI, Excel operations, and CLI

@@ -1,47 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-  <title id="title">SoulRui 文件夹整理工具图标</title>
-  <desc id="desc">Reusable SoulRui app icon. Keep the soulrui-brand layer unchanged and replace the app-artwork layer for each application.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">MC File 文件夹整理工具图标</title>
+  <desc id="desc">MC Software Visual Identity System V1.0. Keep mc-brand-header unchanged and replace app-artwork for other applications.</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0F172A"/>
       <stop offset="1" stop-color="#1E3A8A"/>
     </linearGradient>
-    <linearGradient id="folder" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#38BDF8"/>
+    <linearGradient id="folder-blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#60A5FA"/>
       <stop offset="1" stop-color="#2563EB"/>
     </linearGradient>
-    <linearGradient id="brand-mark" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#4F46E5"/>
-      <stop offset="1" stop-color="#06B6D4"/>
-    </linearGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
-      <feGaussianBlur stdDeviation="14"/>
+    <filter id="soft-shadow" x="-30%" y="-60%" width="160%" height="220%">
+      <feGaussianBlur stdDeviation="20"/>
     </filter>
-  </defs>
-  <rect x="8" y="8" width="496" height="496" rx="112" fill="url(#background)"/>
-  <circle cx="442" cy="430" r="180" fill="#FFFFFF" opacity="0.04"/>
-  <g id="app-artwork">
-    <ellipse cx="256" cy="432" rx="158" ry="24" fill="#020617" opacity="0.42" filter="url(#shadow)"/>
-    <rect x="108" y="214" width="296" height="184" rx="22" fill="#1D4ED8"/>
-    <rect x="108" y="198" width="142" height="84" rx="20" fill="#60A5FA"/>
-    <rect x="96" y="258" width="320" height="172" rx="26" fill="url(#folder)"/>
-    <g fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" opacity="0.94">
-      <path d="M142 302 H300"/>
-      <path d="M142 344 H270"/>
-      <path d="M142 386 H236"/>
-    </g>
-    <circle cx="372" cy="392" r="42" fill="#34D399" stroke="#FFFFFF" stroke-width="6"/>
-    <path d="M352 392 L366 406 L394 374" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  </g>
-  <g id="soulrui-brand">
-    <path d="M120 8 H392 Q504 8 504 120 V136 H8 V120 Q8 8 120 8 Z" fill="#F8FAFC"/>
-    <rect x="8" y="134" width="496" height="4" fill="#22D3EE"/>
     <clipPath id="avatar-clip">
-      <rect x="42" y="44" width="56" height="56" rx="13"/>
+      <rect x="96" y="92" width="128" height="128" rx="28"/>
     </clipPath>
-    <image href="soulrui-avatar.png" x="42" y="44" width="56" height="56" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatar-clip)"/>
-    <rect x="42" y="44" width="56" height="56" rx="13" fill="none" stroke="#6366F1" stroke-width="2"/>
-    <text x="122" y="76" dominant-baseline="middle" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="80" font-weight="700" letter-spacing="-3">SoulRui</text>
+  </defs>
+  <rect x="32" y="32" width="960" height="960" rx="208" fill="url(#background)"/>
+  <circle cx="860" cy="850" r="300" fill="#FFFFFF" opacity="0.03"/>
+  <g id="app-artwork">
+    <ellipse cx="512" cy="832" rx="292" ry="40" fill="#020617" opacity="0.35" filter="url(#soft-shadow)"/>
+    <rect x="348" y="344" width="240" height="288" rx="28" fill="#BFDBFE"/>
+    <path d="M524 344 H588 V408 Z" fill="#93C5FD"/>
+    <rect x="280" y="376" width="240" height="288" rx="28" fill="#F8FAFC"/>
+    <path d="M456 376 H520 V440 Z" fill="#DBEAFE"/>
+    <rect x="320" y="464" width="140" height="16" rx="8" fill="#60A5FA"/>
+    <rect x="320" y="508" width="104" height="14" rx="7" fill="#BFDBFE"/>
+    <rect x="224" y="470" width="544" height="320" rx="40" fill="#1D4ED8"/>
+    <rect x="224" y="424" width="224" height="120" rx="32" fill="#60A5FA"/>
+    <rect x="208" y="536" width="560" height="288" rx="42" fill="url(#folder-blue)"/>
+    <rect x="240" y="556" width="480" height="12" rx="6" fill="#FFFFFF" opacity="0.18"/>
+    <circle cx="760" cy="756" r="88" fill="#34D399" stroke="#FFFFFF" stroke-width="8"/>
+    <path d="M716 756 H796 M764 716 L804 756 L764 796" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
-  <rect x="9" y="9" width="494" height="494" rx="111" fill="none" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="2"/>
+  <g id="mc-brand-header">
+    <path d="M240 32 H784 Q992 32 992 240 V282 H32 V240 Q32 32 240 32 Z" fill="#F8FAFC"/>
+    <rect x="32" y="276" width="960" height="6" fill="#2563EB"/>
+    <image href="creator-avatar.png" x="96" y="92" width="128" height="128" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatar-clip)"/>
+    <rect x="96" y="92" width="128" height="128" rx="28" fill="none" stroke="#CBD5E1" stroke-width="3"/>
+    <text x="264" y="160" dominant-baseline="middle" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="128" font-weight="700" letter-spacing="-5">MC</text>
+    <line x1="496" y1="104" x2="496" y2="220" stroke="#CBD5E1" stroke-width="3"/>
+    <text x="536" y="164" dominant-baseline="middle" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="600">File</text>
+  </g>
+  <rect x="34" y="34" width="956" height="956" rx="206" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="3"/>
 </svg>
