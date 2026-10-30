@@ -12,7 +12,6 @@
   <p>
     <img src="https://img.shields.io/badge/platform-Windows%2064--bit-0078D6" alt="Windows 64-bit">
     <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB" alt="Python 3.10+">
-    <img src="https://img.shields.io/badge/Excel-openpyxl-217346" alt="openpyxl">
   </p>
 </div>
 
