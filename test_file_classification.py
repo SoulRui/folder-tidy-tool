@@ -40,6 +40,41 @@ class FileNumberMatchingTests(unittest.TestCase):
         self.assertEqual(tool.match_key("编号4", self.mapping), "4")
         self.assertEqual(tool.match_key("4", self.mapping), "4")
 
+    def test_explicit_plot_number_ignores_years_and_partial_numbers(self):
+        filename = "新昌县2026年林草执法线索146号图斑（2023年国土三调）示意图.jpg"
+        mapping = dict.fromkeys(("23", "46", "146"), [])
+        self.assertEqual(tool.match_file_key(filename, mapping), "146")
+
+        mapping_with_suffix = dict.fromkeys(("23号", "46号", "146号"), [])
+        self.assertEqual(tool.match_file_key(filename, mapping_with_suffix), "146号")
+
+    def test_unlisted_explicit_number_never_falls_back_to_other_values(self):
+        filename = "新昌县2026年林草执法线索146号图斑（2023年国土三调）示意图.jpg"
+        mapping = dict.fromkeys(("23", "46", "2023", "2026"), [])
+        self.assertIsNone(tool.match_file_key(filename, mapping))
+
+    def test_reported_names_only_match_their_complete_plot_numbers(self):
+        expected = {
+            "146": None, "151": None, "166": None, "177": None,
+            "20": None, "221": "221", "22": "22", "231": "231",
+            "26": None, "271": None, "36": None,
+        }
+        mapping = dict.fromkeys(("23", "16", "17", "46", "221", "22", "231"), [])
+        for number, expected_key in expected.items():
+            filename = f"新昌县2026年林草执法线索{number}号图斑（2023年国土三调）示意图.jpg"
+            with self.subTest(number=number):
+                self.assertEqual(tool.match_file_key(filename, mapping), expected_key)
+
+    def test_temporal_values_are_not_business_numbers(self):
+        mapping = dict.fromkeys(("2023", "23", "5", "6", "11", "2"), [])
+        for name in ("项目2023年5月6日", "项目2023年5月6号", "项目2023-05-06", "项目20231102"):
+            with self.subTest(name=name):
+                self.assertIsNone(tool.match_key(name, mapping))
+
+    def test_plain_number_matches_classification_key_with_suffix(self):
+        mapping = {"146号": []}
+        self.assertEqual(tool.match_file_key("146.JPG", mapping), "146号")
+
     def test_classify_moves_files_using_number_before_parentheses(self):
         with tempfile.TemporaryDirectory(dir=ROOT) as temp_dir:
             excel_path = os.path.join(temp_dir, "分类表.xlsx")

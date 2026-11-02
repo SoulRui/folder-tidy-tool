@@ -6,8 +6,8 @@
   - 整理对象二选一：对文件夹调整（移动子文件夹）/ 对里面的文件调整（移动文件，不限格式）
   - 处理方式二选一：移动（在待处理文件夹内整理）/ 复制到新目录（原文件保留）
   - 自动识别表头行与列名（"编号/文件夹名/名称/ID…"、"一级/二级/三级…"等相近写法均可）
-  - 文件夹名称中包含编号字符串即匹配；文件名为纯数字编号时按完整编号精确匹配
-  - 照片等文件末尾的重复项括号不参与编号识别，如 4 (1).JPG、4（2）.JPG 均按编号 4 归类
+  - 优先读取“146号图斑”中的完整编号；年月日和独立年份不参与编号匹配
+  - 数字编号按完整数字边界匹配，分类表写 146 或 146 号均可；末尾重复项括号不参与识别
   - 去向按 Excel 级别目录（一级/二级/三级/…，级别数不限，取最深非空级）
   - 未匹配到的源文件夹/文件进入"整理失败"文件夹，并生成《整理结果报告》Excel
 
@@ -171,30 +171,77 @@ def deepest_path(levels):
     return os.path.join(*parts) if parts else None
 
 
+NUMERIC_KEY_RE = re.compile(r"^第?\s*(\d+)(?:\s*号(?:\s*图斑)?)?$")
+EXPLICIT_NUMBER_RE = re.compile(r"(?<!\d)(\d+)\s*号")
+TEMPORAL_RES = (
+    re.compile(r"(?<!\d)(?:19|20)\d{2}\s*年\s*\d{1,2}\s*月\s*\d{1,2}\s*[日号]?"),
+    re.compile(r"(?<!\d)(?:19|20)\d{2}[-/.]\d{1,2}(?:[-/.]\d{1,2})?"),
+    re.compile(r"(?<!\d)(?:19|20)(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])(?!\d)"),
+    re.compile(r"(?<!\d)\d{1,2}\s*月\s*\d{1,2}\s*[日号]"),
+    re.compile(r"(?<!\d)(?:19|20)\d{2}\s*年(?:\s*\d{1,2}\s*月)?"),
+    re.compile(r"(?<!\d)\d{1,2}\s*[月日]"),
+    re.compile(r"(?<!\d)(?:19|20)\d{2}(?!\d)"),
+)
+
+
+def numeric_key(key):
+    """返回数字编号的规范形式；兼容 146、146号、第146号、146号图斑。"""
+    match = NUMERIC_KEY_RE.fullmatch(str(key).strip())
+    return match.group(1) if match else None
+
+
+def remove_temporal_values(name):
+    """遮蔽年月日和独立年份，避免其中的数字被误认为业务编号。"""
+    cleaned = name
+    for pattern in TEMPORAL_RES:
+        cleaned = pattern.sub(" ", cleaned)
+    return cleaned
+
+
 def match_key(name, mapping):
-    """在分类表编号中查找与 name 匹配的编号。
-    优先完全相等；否则取被 name **包含**的最长编号（编号可在开头/中间/结尾）。
-    匹配不区分大小写。返回分类表中的原始编号，未匹配返回 None。"""
+    """按名称中的有效编号匹配分类表，不从年份、日期或长数字中截取编号。
+
+    优先完全相等，其次识别“146号图斑”中的完整编号 146。存在明确编号但
+    分类表没有该编号时直接判为未匹配，不再回退到其他片段。无明确编号时，
+    数字编号按完整数字边界匹配，非数字编号仍沿用包含匹配。
+    """
     if not name:
         return None
     if name in mapping:
         return name
     ln = name.lower()
-    best = None
-    for k in mapping:
-        kl = k.lower()
-        if not kl:
-            continue
-        if kl == ln:
-            return k
-        if kl in ln and (best is None or len(kl) > len(best)):
-            best = kl
-    if best is None:
+    for key in mapping:
+        if key.lower() == ln:
+            return key
+
+    explicit_numbers = [
+        match.group(1) for match in EXPLICIT_NUMBER_RE.finditer(name)
+        if not re.search(r"月\s*$", name[:match.start()])
+    ]
+    if explicit_numbers:
+        for number in explicit_numbers:
+            for key in mapping:
+                if numeric_key(key) == number:
+                    return key
         return None
-    for k in mapping:  # 还原原始大小写
-        if k.lower() == best:
-            return k
-    return None
+
+    cleaned = remove_temporal_values(name)
+    cleaned_lower = cleaned.lower()
+    best_key = None
+    best_length = -1
+    for key in mapping:
+        number = numeric_key(key)
+        if number is not None:
+            matched = re.search(rf"(?<!\d){re.escape(number)}(?!\d)", cleaned)
+            key_length = len(number)
+        else:
+            key_lower = key.lower()
+            matched = key_lower and key_lower in cleaned_lower
+            key_length = len(key_lower)
+        if matched and key_length > best_length:
+            best_key = key
+            best_length = key_length
+    return best_key
 
 
 TRAILING_PAREN_RE = re.compile(r"\s*[(（][^()（）]*[)）]\s*$")
@@ -211,19 +258,9 @@ def strip_trailing_parenthetical(name):
 
 
 def match_file_key(filename, mapping):
-    """按文件名匹配编号；末尾括号及内容不参与编号识别。
-
-    纯数字文件名按括号前的完整编号精确匹配，避免把 12 (2) 错归到编号 2。
-    非数字名称仍沿用原有的包含匹配规则。
-    """
+    """按文件名中的有效编号匹配；末尾重复项括号不参与编号识别。"""
     stem = os.path.splitext(filename)[0].strip()
     base = strip_trailing_parenthetical(stem)
-    if base.isdigit():
-        base_lower = base.lower()
-        for key in mapping:
-            if key.lower() == base_lower:
-                return key
-        return None
     key = match_key(base, mapping)
     if key is None and base == stem:
         # 保留原有对“分类表编号包含扩展名”的兼容；有重复项括号时不再回退，
@@ -316,7 +353,7 @@ def classify(excel_path, work_dir, mode="both", action="move", out_dir=None, log
             log(f"[未匹配] {name} -> {FAIL_DIR_NAME}")
             continue
         matched_names.add(key)
-        note = "" if key == name else f"按包含的编号「{key}」匹配"
+        note = "" if key == name else f"按完整编号「{key}」匹配"
         rel = deepest_path(mapping[key])
         if not rel:
             records.append((name, f"未{verb}", "", "该条记录层级均为空"))
@@ -357,7 +394,7 @@ def classify(excel_path, work_dir, mode="both", action="move", out_dir=None, log
         if base != stem:
             note = f"按括号前编号「{key}」匹配"
         else:
-            note = "" if key == stem else f"按包含的编号「{key}」匹配"
+            note = "" if key == stem else f"按完整编号「{key}」匹配"
         rel = deepest_path(mapping[key])
         if not rel:
             records.append((fn, f"未{verb}", "", "该条记录层级均为空"))
@@ -809,8 +846,8 @@ def run_gui():
     outdir_var = tk.StringVar()
     make_path_row(tab1, 4, "新目录（复制时必填）：", outdir_var, False, "classify_outdir")
 
-    tip = ("文件末尾的 (1)、（2）等重复项括号不参与编号识别，纯数字按括号前完整编号匹配；"
-           "去向按 Excel 最深非空级目录。括号前编号不在表中时进入「整理失败」")
+    tip = ("优先按“146号图斑”的完整编号匹配，年月日、独立年份和末尾重复项括号不参与识别；"
+           "编号不在表中时进入「整理失败」，不再从其他数字中凑匹配")
     ttk.Label(tab1, text=tip, foreground="#666").grid(row=5, column=0, columnspan=3, sticky="w")
     log1 = make_log(tab1, 7)
 
