@@ -6,8 +6,8 @@
   - 整理对象二选一：对文件夹调整（移动子文件夹）/ 对里面的文件调整（移动文件，不限格式）
   - 处理方式二选一：移动（在待处理文件夹内整理）/ 复制到新目录（原文件保留）
   - 自动识别表头行与列名（"编号/文件夹名/名称/ID…"、"一级/二级/三级…"等相近写法均可）
-  - 名称中**包含**编号字符串即匹配：编号可为文字+数字等任意字符串、位数不限；
-    位置不限（开头/中间/结尾均可）；同时包含多个编号时取最长者
+  - 文件夹名称中包含编号字符串即匹配；文件名为纯数字编号时按完整编号精确匹配
+  - 照片等文件末尾的重复项括号不参与编号识别，如 4 (1).JPG、4（2）.JPG 均按编号 4 归类
   - 去向按 Excel 级别目录（一级/二级/三级/…，级别数不限，取最深非空级）
   - 未匹配到的源文件夹/文件进入"整理失败"文件夹，并生成《整理结果报告》Excel
 
@@ -197,6 +197,41 @@ def match_key(name, mapping):
     return None
 
 
+TRAILING_PAREN_RE = re.compile(r"\s*[(（][^()（）]*[)）]\s*$")
+
+
+def strip_trailing_parenthetical(name):
+    """去掉文件名末尾的重复项括号，如 4 (1)、4(2)、4（3） -> 4。"""
+    base = name.strip()
+    while True:
+        stripped = TRAILING_PAREN_RE.sub("", base).strip()
+        if stripped == base:
+            return base
+        base = stripped
+
+
+def match_file_key(filename, mapping):
+    """按文件名匹配编号；末尾括号及内容不参与编号识别。
+
+    纯数字文件名按括号前的完整编号精确匹配，避免把 12 (2) 错归到编号 2。
+    非数字名称仍沿用原有的包含匹配规则。
+    """
+    stem = os.path.splitext(filename)[0].strip()
+    base = strip_trailing_parenthetical(stem)
+    if base.isdigit():
+        base_lower = base.lower()
+        for key in mapping:
+            if key.lower() == base_lower:
+                return key
+        return None
+    key = match_key(base, mapping)
+    if key is None and base == stem:
+        # 保留原有对“分类表编号包含扩展名”的兼容；有重复项括号时不再回退，
+        # 否则括号中的数字会再次参与匹配。
+        return match_key(filename, mapping)
+    return key
+
+
 # ---------------------------------------------------------------- 功能一：分类整理
 
 def classify(excel_path, work_dir, mode="both", action="move", out_dir=None, log=print):
@@ -298,10 +333,11 @@ def classify(excel_path, work_dir, mode="both", action="move", out_dir=None, log
         records.append((name, f"已{verb}", rel, note))
         log(f"[{verb}] {name} -> {rel}" + (f"（{note}）" if note else ""))
 
-    # ---------------- 顶层文件：名称中包含编号字符串即匹配（不限格式、编号为任意字符串） ----------------
+    # ---------------- 顶层文件：末尾括号不参与编号识别；纯数字按括号前完整编号精确匹配 ----------------
     for fn in top_files if do_files else []:
         stem = os.path.splitext(fn)[0].strip()
-        key = match_key(stem, mapping) or match_key(fn, mapping)  # 先按去后缀名，再按完整文件名
+        base = strip_trailing_parenthetical(stem)
+        key = match_file_key(fn, mapping)
         src = os.path.join(work_dir, fn)
         if key is None:
             os.makedirs(fail_dir, exist_ok=True)
@@ -314,11 +350,14 @@ def classify(excel_path, work_dir, mode="both", action="move", out_dir=None, log
             _transfer(src, dst, is_dir=False)
             failed_f += 1
             records.append((fn, f"未匹配-已{verb}到整理失败", FAIL_DIR_NAME,
-                            "分类表中没有编号被该文件名包含"))
+                            "括号前编号不在分类表中" if base != stem else "分类表中没有编号被该文件名包含"))
             log(f"[未匹配] {fn} -> {FAIL_DIR_NAME}")
             continue
         matched_names.add(key)
-        note = "" if key == stem else f"按包含的编号「{key}」匹配"
+        if base != stem:
+            note = f"按括号前编号「{key}」匹配"
+        else:
+            note = "" if key == stem else f"按包含的编号「{key}」匹配"
         rel = deepest_path(mapping[key])
         if not rel:
             records.append((fn, f"未{verb}", "", "该条记录层级均为空"))
@@ -755,7 +794,7 @@ def run_gui():
     frm_obj.grid(row=2, column=0, columnspan=3, sticky="ew", pady=4)
     ttk.Radiobutton(frm_obj, text="对文件夹调整（按文件夹名包含编号匹配，移动子文件夹）",
                     variable=obj_var, value="dirs").grid(row=0, column=0, sticky="w")
-    ttk.Radiobutton(frm_obj, text="对里面的文件调整（按文件名包含编号匹配，不限格式，移动文件）",
+    ttk.Radiobutton(frm_obj, text="对里面的文件调整（忽略末尾重复项括号，不限格式，移动文件）",
                     variable=obj_var, value="files").grid(row=1, column=0, sticky="w")
 
     # 处理方式：移动 / 复制到新目录（二选一）
@@ -770,8 +809,8 @@ def run_gui():
     outdir_var = tk.StringVar()
     make_path_row(tab1, 4, "新目录（复制时必填）：", outdir_var, False, "classify_outdir")
 
-    tip = ("编号可为任意字符串，名称中包含编号即匹配（位置不限）；去向按 Excel 级别目录"
-           "（一级/二级/三级…级别数不限，取最深非空级）。未匹配项进入「整理失败」")
+    tip = ("文件末尾的 (1)、（2）等重复项括号不参与编号识别，纯数字按括号前完整编号匹配；"
+           "去向按 Excel 最深非空级目录。括号前编号不在表中时进入「整理失败」")
     ttk.Label(tab1, text=tip, foreground="#666").grid(row=5, column=0, columnspan=3, sticky="w")
     log1 = make_log(tab1, 7)
 
