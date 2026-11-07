@@ -1,47 +1,69 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
-  <title id="title">MC File 文件夹整理工具图标</title>
-  <desc id="desc">MC Software Visual Identity System V1.0. Keep mc-brand-header unchanged and replace app-artwork for other applications.</desc>
+<!-- MC Template v1.0.2: 按 V1.0 视觉规范复核并同步自动中文 Release 流程。 --><title id="title">MC File Application Icon</title>
+<desc id="desc">Reusable icon base. Replace the canonical category label and functional-artwork group; preserve the MC master geometry and header alignment.</desc>
+<defs>
+ <clipPath id="tile"><rect width="1024" height="1024" rx="224"/></clipPath>
+ <linearGradient id="background" x1="0" y1="308" x2="0" y2="1024" gradientUnits="userSpaceOnUse"><stop stop-color="#172554"/><stop offset="1" stop-color="#0F172A"/></linearGradient>
+ <linearGradient id="brand-type" x1="516" y1="90" x2="900" y2="220" gradientUnits="userSpaceOnUse"><stop stop-color="#092C6C"/><stop offset=".38" stop-color="#0753C4"/><stop offset=".72" stop-color="#078AF7"/><stop offset="1" stop-color="#10CEC5"/></linearGradient>
+ <linearGradient id="folder-blue" x1="208" y1="536" x2="768" y2="824" gradientUnits="userSpaceOnUse"><stop stop-color="#60A5FA"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
+</defs>
+<g id="container" clip-path="url(#tile)">
+ <rect width="1024" height="1024" fill="#F8FAFC"/>
+ <path d="M0 308H1024V1024H0Z" fill="url(#background)"/>
+ <path d="M0 308H1024" stroke="#CBD5E1" stroke-opacity=".72" stroke-width="3"/>
+ <g id="brand-header">
+  <!-- Exact approved logo paths and gradients; do not redraw or recolor. -->
+  <svg id="mc-c-mark" x="148" y="87" width="320" height="136" viewBox="0 0 2000 850" preserveAspectRatio="xMidYMid meet">
+
+  <title id="title">沐晨 MC 立体折带标志</title>
+  <desc id="desc">由蓝色立体折带 M 与分段式蓝青渐变 C 构成的透明背景矢量标志。</desc>
   <defs>
-    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0F172A"/>
-      <stop offset="1" stop-color="#1E3A8A"/>
+    <linearGradient id="m-left" x1="424" y1="124" x2="216" y2="770" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A3584"/>
+      <stop offset="0.28" stop-color="#074BB7"/>
+      <stop offset="0.64" stop-color="#0764E2"/>
+      <stop offset="1" stop-color="#078CFA"/>
     </linearGradient>
-    <linearGradient id="folder-blue" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#60A5FA"/>
-      <stop offset="1" stop-color="#2563EB"/>
+    <linearGradient id="m-fold" x1="474" y1="128" x2="579" y2="470" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#123D83"/>
+      <stop offset="0.46" stop-color="#082C68"/>
+      <stop offset="1" stop-color="#082B6D"/>
     </linearGradient>
-    <filter id="soft-shadow" x="-30%" y="-60%" width="160%" height="220%">
-      <feGaussianBlur stdDeviation="20"/>
-    </filter>
-    <clipPath id="avatar-clip">
-      <rect x="96" y="92" width="128" height="128" rx="28"/>
-    </clipPath>
+    <linearGradient id="m-rise" x1="544" y1="622" x2="1288" y2="126" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#082B6D"/>
+      <stop offset="0.3" stop-color="#07449F"/>
+      <stop offset="0.64" stop-color="#0762D8"/>
+      <stop offset="1" stop-color="#088AF7"/>
+    </linearGradient>
+    <linearGradient id="c-lower" x1="990" y1="574" x2="1738" y2="614" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#092C6C"/>
+      <stop offset="0.28" stop-color="#0A3C94"/>
+      <stop offset="0.62" stop-color="#0753C4"/>
+      <stop offset="1" stop-color="#0869E8"/>
+    </linearGradient>
+    <linearGradient id="c-upper" x1="1340" y1="282" x2="1878" y2="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0796E7"/>
+      <stop offset="0.5" stop-color="#08B5D7"/>
+      <stop offset="1" stop-color="#10CEC5"/>
+    </linearGradient>
   </defs>
-  <rect x="32" y="32" width="960" height="960" rx="208" fill="url(#background)"/>
-  <circle cx="860" cy="850" r="300" fill="#FFFFFF" opacity="0.03"/>
-  <g id="app-artwork">
-    <ellipse cx="512" cy="832" rx="292" ry="40" fill="#020617" opacity="0.35" filter="url(#soft-shadow)"/>
-    <rect x="348" y="344" width="240" height="288" rx="28" fill="#BFDBFE"/>
-    <path d="M524 344 H588 V408 Z" fill="#93C5FD"/>
-    <rect x="280" y="376" width="240" height="288" rx="28" fill="#F8FAFC"/>
-    <path d="M456 376 H520 V440 Z" fill="#DBEAFE"/>
-    <rect x="320" y="464" width="140" height="16" rx="8" fill="#60A5FA"/>
-    <rect x="320" y="508" width="104" height="14" rx="7" fill="#BFDBFE"/>
-    <rect x="224" y="470" width="544" height="320" rx="40" fill="#1D4ED8"/>
-    <rect x="224" y="424" width="224" height="120" rx="32" fill="#60A5FA"/>
-    <rect x="208" y="536" width="560" height="288" rx="42" fill="url(#folder-blue)"/>
-    <rect x="240" y="556" width="480" height="12" rx="6" fill="#FFFFFF" opacity="0.18"/>
-    <circle cx="760" cy="756" r="88" fill="#34D399" stroke="#FFFFFF" stroke-width="8"/>
-    <path d="M716 756 H796 M764 716 L804 756 L764 796" fill="none" stroke="#FFFFFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g id="m-monogram">
+    <path id="m-back-fold" d="M443 117C480 114 505 127 535 153L737 335L519.620 514.532L465 458C486 400 501 338 507 278C515 208 502 156 475 130Z" fill="url(#m-fold)"/>
+    <path id="m-rising-ribbon" d="M737 335L1037 105C1066 83 1094 74 1134 74L1398 69C1420 69 1428 83 1415 105L1373 168C1361 188 1349 200 1332 212L714 669C696 683 680 681 665 665L519.620 514.532Z" fill="url(#m-rise)"/>
+    <path id="m-left-ribbon" d="M98 764L327 174C338 140 358 118 394 117H443C478 117 496 139 504 178C519 250 504 351 465 458L369 723C360 753 341 774 306 774H105Q92 774 98 764Z" fill="url(#m-left)"/>
   </g>
-  <g id="mc-brand-header">
-    <path d="M240 32 H784 Q992 32 992 240 V282 H32 V240 Q32 32 240 32 Z" fill="#F8FAFC"/>
-    <rect x="32" y="276" width="960" height="6" fill="#2563EB"/>
-    <image href="creator-avatar.png" x="96" y="92" width="128" height="128" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatar-clip)"/>
-    <rect x="96" y="92" width="128" height="128" rx="28" fill="none" stroke="#CBD5E1" stroke-width="3"/>
-    <text x="264" y="160" dominant-baseline="middle" fill="#0F172A" font-family="Segoe UI, Arial, sans-serif" font-size="128" font-weight="700" letter-spacing="-5">MC</text>
-    <line x1="496" y1="104" x2="496" y2="220" stroke="#CBD5E1" stroke-width="3"/>
-    <text x="536" y="164" dominant-baseline="middle" fill="#475569" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="600">File</text>
+
+  <g id="c-monogram">
+    <path id="c-lower-bowl" d="M1157 387Q1167 381 1172 396C1192 453 1218 493 1257 518C1280 532 1302 538 1330 538H1758Q1771 538 1763 550L1682 650C1615 735 1534 772 1434 772H1284C1167 772 1080 728 1027 649C1004 615 987 577 977 541Q972 523 983 515Z" fill="url(#c-lower)"/>
+    <path id="c-upper-arm" d="M1338 276L1468 116C1490 87 1514 72 1546 70L1876 62Q1893 62 1881 78L1744 247C1724 273 1699 285 1667 286L1346 293Q1328 293 1338 276Z" fill="url(#c-upper)"/>
   </g>
-  <rect x="34" y="34" width="956" height="956" rx="206" fill="none" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="3"/>
+
+  </svg>
+  <path id="header-divider" d="M490 94V214" stroke="#CBD5E1" stroke-width="3"/>
+  <!-- Replace TYPE with one canonical software category; size by visible bounds. -->
+  <text id="type-label" x="517" y="210" fill="url(#brand-type)" font-family="Arial,sans-serif" font-size="154" font-weight="700" font-style="italic">File</text>
+ </g>
+ <g id="functional-symbol"><path d="M293 472Q293 426 339 426H484L536 480H732Q778 480 778 526V803Q778 849 732 849H339Q293 849 293 803Z" fill="#2563EB"/><path d="M246 550Q246 504 292 504H732Q778 504 778 550V803Q778 849 732 849H292Q246 849 246 803Z" fill="url(#folder-blue)"/><path d="M390 584H612Q644 584 644 616V779H374V600Q374 584 390 584Z" fill="#F8FAFC"/><path d="M580 584V650H644" fill="#BFDBFE"/><path d="M416 681H570M416 722H586M416 763H532" stroke="#60A5FA" stroke-width="16" stroke-linecap="round"/><path d="M686 626V733M652 700L686 734L720 700" fill="none" stroke="#10CEC5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/></g>
+</g>
 </svg>
