@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
-<!-- MC Template v1.0.2: 按 V1.0 视觉规范复核并同步自动中文 Release 流程。 --><title id="title">MC File Application Icon</title>
-<desc id="desc">Reusable icon base. Replace the canonical category label and functional-artwork group; preserve the MC master geometry and header alignment.</desc>
+<!-- MC Template v1.0.2: 按 V1.0 视觉规范复核并同步自动中文 Release 流程。 --><title id="title">MC 文件夹整理工具应用图标</title>
+<desc id="desc">Excel 分类规则流向层级文件夹，表现批量结构化归档。</desc>
 <defs>
  <clipPath id="tile"><rect width="1024" height="1024" rx="224"/></clipPath>
- <linearGradient id="background" x1="0" y1="308" x2="0" y2="1024" gradientUnits="userSpaceOnUse"><stop stop-color="#172554"/><stop offset="1" stop-color="#0F172A"/></linearGradient>
- <linearGradient id="brand-type" x1="516" y1="90" x2="900" y2="220" gradientUnits="userSpaceOnUse"><stop stop-color="#092C6C"/><stop offset=".38" stop-color="#0753C4"/><stop offset=".72" stop-color="#078AF7"/><stop offset="1" stop-color="#10CEC5"/></linearGradient>
+ <linearGradient id="background" x1="0" y1="248" x2="0" y2="1024" gradientUnits="userSpaceOnUse"><stop stop-color="#172554"/><stop offset="1" stop-color="#0F172A"/></linearGradient>
+ <linearGradient id="brand-type" x1="400" y1="132" x2="990" y2="180" gradientUnits="userSpaceOnUse"><stop stop-color="#092C6C"/><stop offset=".38" stop-color="#0753C4"/><stop offset=".72" stop-color="#078AF7"/><stop offset="1" stop-color="#10CEC5"/></linearGradient>
  <linearGradient id="folder-blue" x1="208" y1="536" x2="768" y2="824" gradientUnits="userSpaceOnUse"><stop stop-color="#60A5FA"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
 </defs>
 <g id="container" clip-path="url(#tile)">
  <rect width="1024" height="1024" fill="#F8FAFC"/>
- <path d="M0 308H1024V1024H0Z" fill="url(#background)"/>
- <path d="M0 308H1024" stroke="#CBD5E1" stroke-opacity=".72" stroke-width="3"/>
- <g id="brand-header">
+ <path d="M0 248H1024V1024H0Z" fill="url(#background)"/>
+ <path d="M0 248H1024" stroke="#CBD5E1" stroke-opacity=".72" stroke-width="3"/>
+ <g id="brand-header-target75-scale" transform="translate(511.500,154.000) scale(1.08628006) translate(-511.500,-154.000)"><g id="brand-header" transform="translate(76.28,18.71) scale(.87847)">
   <!-- Exact approved logo paths and gradients; do not redraw or recolor. -->
-  <svg id="mc-c-mark" x="148" y="87" width="320" height="136" viewBox="0 0 2000 850" preserveAspectRatio="xMidYMid meet">
+  <svg id="mc-c-mark" x="80" y="94.5" width="280" height="119" viewBox="0 0 2000 850" preserveAspectRatio="xMidYMid meet">
 
   <title id="title">沐晨 MC 立体折带标志</title>
   <desc id="desc">由蓝色立体折带 M 与分段式蓝青渐变 C 构成的透明背景矢量标志。</desc>
@@ -60,10 +60,10 @@
   </g>
 
   </svg>
-  <path id="header-divider" d="M490 94V214" stroke="#CBD5E1" stroke-width="3"/>
+  <path id="header-divider" d="M370 100V208" stroke="#CBD5E1" stroke-width="3"/>
   <!-- Replace TYPE with one canonical software category; size by visible bounds. -->
-  <text id="type-label" x="517" y="210" fill="url(#brand-type)" font-family="Arial,sans-serif" font-size="154" font-weight="700" font-style="italic">File</text>
- </g>
- <g id="functional-symbol"><path d="M293 472Q293 426 339 426H484L536 480H732Q778 480 778 526V803Q778 849 732 849H339Q293 849 293 803Z" fill="#2563EB"/><path d="M246 550Q246 504 292 504H732Q778 504 778 550V803Q778 849 732 849H292Q246 849 246 803Z" fill="url(#folder-blue)"/><path d="M390 584H612Q644 584 644 616V779H374V600Q374 584 390 584Z" fill="#F8FAFC"/><path d="M580 584V650H644" fill="#BFDBFE"/><path d="M416 681H570M416 722H586M416 763H532" stroke="#60A5FA" stroke-width="16" stroke-linecap="round"/><path d="M686 626V733M652 700L686 734L720 700" fill="none" stroke="#10CEC5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text id="project-name" x="395" y="178" text-anchor="start" fill="url(#brand-type)" font-family="Microsoft YaHei,sans-serif" font-size="72" font-weight="700">文件夹整理工具</text>
+ </g></g>
+ <g id="functional-symbol-target75-scale" transform="translate(512.000,636.000) scale(1.08474576) translate(-512.000,-636.000)"><g id="functional-symbol" transform="translate(-47.98,-14.67) scale(1.05457)"><rect x="196" y="422" width="330" height="390" rx="38" fill="#F8FAFC"/><path d="M196 462Q196 422 236 422H486Q526 422 526 462V518H196Z" fill="#2563EB"/><rect x="238" y="472" width="54" height="18" rx="9" fill="#DBEAFE"/><path d="M232 561H490M232 620H490M232 679H490M232 738H490M318 542V784M404 542V784" stroke="#93C5FD" stroke-width="10"/><rect x="240" y="578" width="47" height="25" rx="8" fill="#10CEC5"/><rect x="329" y="637" width="58" height="25" rx="8" fill="#60A5FA"/><rect x="414" y="696" width="57" height="25" rx="8" fill="#10CEC5"/><path d="M555 618H632M607 592L634 618L607 644" fill="none" stroke="#10CEC5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/><path d="M672 467H746L775 498H820V580H650V489Q650 467 672 467Z" fill="#60A5FA"/><path d="M680 568H774L802 599H845V680H657V589Q657 568 680 568Z" fill="#3B82F6"/><path d="M688 669H801L829 700H866V783H664V690Q664 669 688 669Z" fill="#2563EB"/><rect x="702" y="526" width="54" height="10" rx="5" fill="#DBEAFE"/><rect x="708" y="628" width="62" height="10" rx="5" fill="#BFDBFE"/><rect x="715" y="731" width="69" height="10" rx="5" fill="#93C5FD"/></g></g>
 </g>
 </svg>

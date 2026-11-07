@@ -11,7 +11,7 @@
   </p>
   <p>
     <img src="https://img.shields.io/badge/platform-Windows%2064--bit-0078D6" alt="Windows 64-bit">
-    <img src="https://img.shields.io/badge/version-v1.0.4-059669" alt="Version 1.0.4">
+    <img src="https://img.shields.io/badge/version-v1.0.5-059669" alt="Version 1.0.4">
     <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB" alt="Python 3.10+">
   </p>
 </div>
@@ -42,7 +42,7 @@
 ### 下载与运行
 
 1. 打开 **[Releases 页面](https://github.com/SoulRui/folder-tidy-tool/releases/latest)**。
-2. 下载 **`folder-tidy-tool-v1.0.4-windows-x64.exe`**。
+2. 下载 **`folder-tidy-tool-v1.0.5-windows-x64.exe`**。
 3. 双击运行，无需安装 Python、Excel 或其他运行环境。
 4. 发布程序为 **Windows 64 位免安装版本**，已包含 openpyxl 和拖拽组件。
 5. 程序未购买代码签名证书，Windows SmartScreen 可能显示提示。请只从本仓库 Releases 下载，并核对发布页提供的 SHA-256；也可以检查源码后自行运行。
@@ -50,7 +50,7 @@
 校验命令：
 
 ```powershell
-certutil -hashfile "folder-tidy-tool-v1.0.4-windows-x64.exe" SHA256
+certutil -hashfile "folder-tidy-tool-v1.0.5-windows-x64.exe" SHA256
 ```
 
 ### 一、按 Excel 分类整理
@@ -165,19 +165,19 @@ pyinstaller --clean "文件夹整理工具.spec"
 
 ```powershell
 # 分类整理：文件夹和文件，复制到新目录
-.\folder-tidy-tool-v1.0.4-windows-x64.exe classify "D:\Demo\classification.xlsx" "D:\Demo\Input" both copy "D:\Demo\Output"
+.\folder-tidy-tool-v1.0.5-windows-x64.exe classify "D:\Demo\classification.xlsx" "D:\Demo\Input" both copy "D:\Demo\Output"
 
 # 按 Excel 重命名子文件夹（原位移动）
-.\folder-tidy-tool-v1.0.4-windows-x64.exe rename "D:\Demo\rename.xlsx" "D:\Demo\Input" dirs move
+.\folder-tidy-tool-v1.0.5-windows-x64.exe rename "D:\Demo\rename.xlsx" "D:\Demo\Input" dirs move
 
 # 递归生成目录清单
-.\folder-tidy-tool-v1.0.4-windows-x64.exe scan "D:\Demo\Input" "D:\Demo\listing.xlsx"
+.\folder-tidy-tool-v1.0.5-windows-x64.exe scan "D:\Demo\Input" "D:\Demo\listing.xlsx"
 
 # 同名不同扩展名文件归组
-.\folder-tidy-tool-v1.0.4-windows-x64.exe group "D:\Demo\Input" full
+.\folder-tidy-tool-v1.0.5-windows-x64.exe group "D:\Demo\Input" full
 
 # 按文件名前 5 位归组，只处理 jpg 和 shp
-.\folder-tidy-tool-v1.0.4-windows-x64.exe group "D:\Demo\Input" prefix 5 jpg,shp
+.\folder-tidy-tool-v1.0.5-windows-x64.exe group "D:\Demo\Input" prefix 5 jpg,shp
 ```
 
 窗口版 EXE 的终端日志可能不可见；需要完整控制台输出时，可使用 `python folder_tidy_tool.py ...` 运行相同命令。移动类命令请先使用测试副本。
@@ -225,13 +225,13 @@ The interface is currently in Simplified Chinese, with full English documentatio
 ### Download and run
 
 1. Open the **[Releases page](https://github.com/SoulRui/folder-tidy-tool/releases/latest)**.
-2. Download **`folder-tidy-tool-v1.0.4-windows-x64.exe`**.
+2. Download **`folder-tidy-tool-v1.0.5-windows-x64.exe`**.
 3. Double-click it. Python, Microsoft Excel, and additional runtimes are not required.
 4. The portable **64-bit Windows** build includes openpyxl and drag-and-drop resources.
 5. The executable is not digitally signed with a purchased code-signing certificate, so SmartScreen may warn you. Download only from this repository and compare the SHA-256 in the release notes, or inspect and run the source yourself.
 
 ```powershell
-certutil -hashfile "folder-tidy-tool-v1.0.4-windows-x64.exe" SHA256
+certutil -hashfile "folder-tidy-tool-v1.0.5-windows-x64.exe" SHA256
 ```
 
 ### Using the four tools
@@ -314,19 +314,19 @@ The examples below use the release asset name. Replace it with your actual execu
 
 ```powershell
 # Classify folders and files into a separate output directory
-.\folder-tidy-tool-v1.0.4-windows-x64.exe classify "D:\Demo\classification.xlsx" "D:\Demo\Input" both copy "D:\Demo\Output"
+.\folder-tidy-tool-v1.0.5-windows-x64.exe classify "D:\Demo\classification.xlsx" "D:\Demo\Input" both copy "D:\Demo\Output"
 
 # Rename folders in place
-.\folder-tidy-tool-v1.0.4-windows-x64.exe rename "D:\Demo\rename.xlsx" "D:\Demo\Input" dirs move
+.\folder-tidy-tool-v1.0.5-windows-x64.exe rename "D:\Demo\rename.xlsx" "D:\Demo\Input" dirs move
 
 # Export a recursive directory listing
-.\folder-tidy-tool-v1.0.4-windows-x64.exe scan "D:\Demo\Input" "D:\Demo\listing.xlsx"
+.\folder-tidy-tool-v1.0.5-windows-x64.exe scan "D:\Demo\Input" "D:\Demo\listing.xlsx"
 
 # Group by complete basename
-.\folder-tidy-tool-v1.0.4-windows-x64.exe group "D:\Demo\Input" full
+.\folder-tidy-tool-v1.0.5-windows-x64.exe group "D:\Demo\Input" full
 
 # Group by a five-character prefix and filter extensions
-.\folder-tidy-tool-v1.0.4-windows-x64.exe group "D:\Demo\Input" prefix 5 jpg,shp
+.\folder-tidy-tool-v1.0.5-windows-x64.exe group "D:\Demo\Input" prefix 5 jpg,shp
 ```
 
 Console output may not be visible in the windowed EXE. Use `python folder_tidy_tool.py ...` when you need full terminal logs. Test move operations on copies first.
